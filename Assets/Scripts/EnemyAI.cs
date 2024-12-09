@@ -26,6 +26,7 @@ public class EnemyAI : MonoBehaviour
     //Cosas detencion
     [SerializeField] float _visionRange = 20; 
     [SerializeField] float _visionAngle = 120;
+    private Vector3 _playerLastPosition;
 
     void Awake()
     {
@@ -91,26 +92,39 @@ public class EnemyAI : MonoBehaviour
         float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
         float distanceToPlayer = Vector3.Distance(transform.position, _playerTranform.position);
 
+        if(_playerTranform.position == _playerLastPosition)
+        {
+            return true;
+        }
+
         if(distanceToPlayer > _visionRange)
         {
             return false;
         }
 
-        if(distanceToPlayer < _visionRange)
+        if(angleToPlayer > _visionAngle * 0.5f)
         {
-            if(angleToPlayer < _visionAngle * 0.5f)
+            return false;
+        }
+
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, directionToPlayer, out hit, distanceToPlayer))
+        {
+            if(hit.collider.CompareTag("Player"))
             {
+                _playerLastPosition = _playerTranform.position;
+
                 return true;
             }
+
             else
             {
                 return false;
             }
         }
-        else
-        {
-            return false;
-        }
+
+        return true;
+
     }
 
     void SetRandomPatrolPoint()
