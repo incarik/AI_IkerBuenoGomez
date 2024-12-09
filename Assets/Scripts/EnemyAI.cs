@@ -169,7 +169,6 @@ public class EnemyAI : MonoBehaviour
         }
 
         return true;
-
     }
 
     void SetRandomPatrolPoint()
@@ -204,5 +203,4 @@ public class EnemyAI : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + fovLine1);
         Gizmos.DrawLine(transform.position, transform.position + fovLine2);
     }
-
 }
