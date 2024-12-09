@@ -112,6 +112,7 @@ public class EnemyAI : MonoBehaviour
         else
         {
             currentState = EnemyState.Patrolling;
+            _searchTimer = 0;
         }
     }
 

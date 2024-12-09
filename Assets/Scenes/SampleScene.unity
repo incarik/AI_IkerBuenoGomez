@@ -2650,7 +2650,10 @@ MonoBehaviour:
   - {fileID: 1621766255}
   - {fileID: 1452984763}
   - {fileID: 129561482}
+  _patrolAreaSize: {x: 22, y: 19.7}
+  _patrolAreaCenter: {fileID: 2058602964}
   _visionRange: 15
+  _visionAngle: 120
 --- !u!136 &603713092
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12154,6 +12157,37 @@ LightingSettings:
   m_PVRTiledBaking: 0
   m_NumRaysToShootPerTexel: -1
   m_RespectSceneVisibilityWhenBakingGI: 0
+--- !u!1 &2058602963
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2058602964}
+  m_Layer: 0
+  m_Name: PatrolArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2058602964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058602963}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.52, y: 8.55, z: 9.9}
+  m_LocalScale: {x: 0.7767845, y: 0.7767845, z: 0.7767845}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2145640445
 GameObject:
   m_ObjectHideFlags: 0
@@ -12527,3 +12561,4 @@ SceneRoots:
   - {fileID: 1151331039}
   - {fileID: 1789545098}
   - {fileID: 1401554845}
+  - {fileID: 2058602964}
