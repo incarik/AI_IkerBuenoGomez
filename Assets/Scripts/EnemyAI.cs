@@ -18,12 +18,18 @@ public class EnemyAI : MonoBehaviour
     public EnemyState currentState;
 
     private NavMeshAgent _AIAgent;
+    private Transform _playerTranform;
 
+    //Puntos patrulla
     [SerializeField] Transform[] _patrolPoints;
+    
+    //Cosas detencion
+    [SerializeField] float _visionRange = 20; 
 
     void Awake()
     {
         _AIAgent = GetComponent<NavMeshAgent>();
+        _playerTranform = GameObject.FindWithTag("Player").transform;
     } 
 
     // Start is called before the first frame update
@@ -52,6 +58,10 @@ public class EnemyAI : MonoBehaviour
 
     void Patrol()
     {
+        if(OnRange())
+        {
+            currentState = EnemyState.Chasing;
+        }
         if(_AIAgent.remainingDistance < 0.5f)
         {
             SetRandomPatrolPoint();
@@ -61,12 +71,30 @@ public class EnemyAI : MonoBehaviour
 
     void Chase()
     {
-        
+        if(!OnRange())
+        {
+            currentState = EnemyState.Patrolling;
+        }
+        _AIAgent.destination = _playerTranform.position;
     }
 
     void Search()
     {
 
+    }
+
+    bool OnRange()
+    {
+        float distanceToPlayer = Vector3.Distance(transform.position, _playerTranform.position);
+
+        if(distanceToPlayer < _visionRange)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     void SetRandomPatrolPoint()
@@ -81,6 +109,9 @@ public class EnemyAI : MonoBehaviour
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(point.position, 1);
         }
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, _visionRange);
     }
 
 }

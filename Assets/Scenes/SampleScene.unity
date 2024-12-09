@@ -2650,6 +2650,7 @@ MonoBehaviour:
   - {fileID: 1621766255}
   - {fileID: 1452984763}
   - {fileID: 129561482}
+  _visionRange: 15
 --- !u!136 &603713092
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3211,7 +3212,7 @@ GameObject:
   - component: {fileID: 1071094891}
   m_Layer: 0
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3369,8 +3370,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: 1.2279959, y: -8.513267, z: -3.0157976}
-  m_EndPoint: {x: 4.086688, y: -8.079737, z: -3.0423489}
+  m_StartPoint: {x: 0.9007788, y: -9.767034, z: -2.839634}
+  m_EndPoint: {x: 3.859664, y: -8.299815, z: -3.0423489}
   m_Width: 3.03
   m_CostModifier: -1
   m_Bidirectional: 1
@@ -8625,8 +8626,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
   m_StartPoint: {x: -10.118678, y: -2.2216744, z: -4.508299}
-  m_EndPoint: {x: -7.688401, y: -2.8823252, z: -4.4800587}
-  m_Width: 4.88
+  m_EndPoint: {x: -7.041518, y: -3.965632, z: -4.4800587}
+  m_Width: 4.9149675
   m_CostModifier: -1
   m_Bidirectional: 1
   m_AutoUpdatePosition: 0
@@ -11850,8 +11851,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: 0.15881634, y: -5.196503, z: -5.679888}
-  m_EndPoint: {x: 3.1879816, y: -4.8689985, z: -3.8714452}
+  m_StartPoint: {x: -0.6277256, y: -5.6387496, z: -6.8058224}
+  m_EndPoint: {x: 2.8511248, y: -6.546879, z: 0.82139397}
   m_Width: 0.69
   m_CostModifier: -1
   m_Bidirectional: 1
@@ -11902,9 +11903,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: -0.6931677, y: -8.513267, z: -3.0157976}
-  m_EndPoint: {x: 4.086688, y: -6.037438, z: -3.0423489}
-  m_Width: 5.57
+  m_StartPoint: {x: -1.0888586, y: -9.742892, z: -3.0157976}
+  m_EndPoint: {x: 3.0374079, y: -6.172631, z: -3.6693945}
+  m_Width: 5.5
   m_CostModifier: -1
   m_Bidirectional: 1
   m_AutoUpdatePosition: 0
