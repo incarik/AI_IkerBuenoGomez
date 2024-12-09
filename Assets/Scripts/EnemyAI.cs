@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,11 +23,18 @@ public class EnemyAI : MonoBehaviour
 
     //Puntos patrulla
     [SerializeField] Transform[] _patrolPoints;
+    [SerializeField] Vector2 _patrolAreaSize = new Vector2(5, 5);
+    [SerializeField] Transform _patrolAreaCenter;
     
     //Cosas detencion
     [SerializeField] float _visionRange = 20; 
     [SerializeField] float _visionAngle = 120;
     private Vector3 _playerLastPosition;
+
+    //Cosas busqueda
+
+    float serachTimer;
+    float searchWaitTime = 15;
 
     void Awake()
     {
@@ -129,16 +137,25 @@ public class EnemyAI : MonoBehaviour
 
     void SetRandomPatrolPoint()
     {
-        _AIAgent.destination = _patrolPoints[Random.Range(0, _patrolPoints.Length)].position;
+        //_AIAgent.destination = _patrolPoints[Random.Range(0, _patrolPoints.Length)].position;
+        float RandomX = Random.Range(-_patrolAreaSize.x * 0.5f, _patrolAreaSize.x * 0.5f);
+        float RandomZ = Random.Range(-_patrolAreaSize.y * 0.5f, _patrolAreaSize.y * 0.5f);
+
+        Vector3 randomPoint = new Vector3(RandomX, 0, RandomZ) +_patrolAreaCenter.position;
+
+        _AIAgent.destination = randomPoint;
     }
 
     void OnDrawGizmos()
     {
-        foreach (Transform point in _patrolPoints)
+        /*foreach (Transform point in _patrolPoints)
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(point.position, 1);
-        }
+        }*/
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(_patrolAreaCenter.position, new Vector3(_patrolAreaSize.x, 1, _patrolAreaSize.y));
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, _visionRange);
