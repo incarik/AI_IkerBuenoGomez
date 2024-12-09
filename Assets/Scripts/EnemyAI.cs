@@ -33,8 +33,9 @@ public class EnemyAI : MonoBehaviour
 
     //Cosas busqueda
 
-    float serachTimer;
-    float searchWaitTime = 15;
+    float _searchTimer;
+    float _searchWaitTime = 15;
+    float _searchRadius = 10;
 
     void Awake()
     {
@@ -83,14 +84,50 @@ public class EnemyAI : MonoBehaviour
     {
         if(!OnRange())
         {
-            currentState = EnemyState.Patrolling;
+            currentState = EnemyState.Searching;
         }
         _AIAgent.destination = _playerTranform.position;
     }
 
     void Search()
     {
+        if(OnRange())
+        {
+            currentState = EnemyState.Chasing;
+        }
 
+        _searchTimer += Time.deltaTime;
+
+        if(_searchTimer < _searchWaitTime)
+        {
+            if(_AIAgent.remainingDistance < 0.5f)
+            {
+                Vector3 randomPoint;
+                if(RandomSearchPoint(_playerLastPosition, _searchRadius, out randomPoint))
+                {
+                    _AIAgent.destination = randomPoint;
+                }
+            }
+        }
+        else
+        {
+            currentState = EnemyState.Patrolling;
+        }
+    }
+
+    bool RandomSearchPoint(Vector3 center, float radius, out Vector3 point)
+    {
+        Vector3 randomPoint = center + Random.insideUnitSphere * radius;
+
+        NavMeshHit hit;
+        if(NavMesh.SamplePosition(randomPoint, out hit, 4, NavMesh.AllAreas))
+        {
+            point = hit.position;
+            return true;
+        }
+
+        point = Vector3.zero;
+        return false;
     }
 
     bool OnRange()
